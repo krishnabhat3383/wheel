@@ -1,40 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Alert } from "neetoui/v2";
+import { Modal, Button, Typography, Toastr } from "neetoui/v2";
 
-import notesApi from "apis/notes";
-
-const DeleteAlert = ({
-  refetch,
-  onClose,
-  selectedNoteIds,
-  setSelectedNoteIds,
-}) => {
-  const [deleting, setDeleting] = useState(false);
+const DeleteAlert = ({ onClose }) => {
   const handleDelete = async () => {
     try {
-      setDeleting(true);
-      await notesApi.destroy({ ids: selectedNoteIds });
+      Toastr.success("Note deleted successfully");
       onClose();
-      setSelectedNoteIds([]);
-      refetch();
     } catch (error) {
       logger.error(error);
-    } finally {
-      setDeleting(false);
     }
   };
+
   return (
-    <Alert
-      isOpen
-      onSubmit={handleDelete}
-      onClose={onClose}
-      message="Are you sure you want to continue? This cannot be undone."
-      title={`Delete ${selectedNoteIds.length} ${
-        selectedNoteIds.length > 1 ? "notes" : "note"
-      }?`}
-      isSubmitting={deleting}
-    />
+    <Modal isOpen onClose={onClose} size="medium">
+      <Modal.Header>
+        <Typography style="h2">Delete Note</Typography>
+      </Modal.Header>
+      <Modal.Body>
+        <Typography style="body2" lineHeight="normal">
+          Are you sure you want to delete the note? This action cannot be
+          undone.
+        </Typography>
+      </Modal.Body>
+      <Modal.Footer className="space-x-2">
+        <Button label="Continue" onClick={handleDelete} size="large" />
+        <Button style="text" label="Cancel" onClick={onClose} size="large" />
+      </Modal.Footer>
+    </Modal>
   );
 };
 
