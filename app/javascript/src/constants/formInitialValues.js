@@ -16,5 +16,13 @@ export default {
   notesForm: {
     title: "",
     description: "",
+    assignedContact: "",
+    tags: "",
+  },
+  contactForm: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "",
   },
 };
