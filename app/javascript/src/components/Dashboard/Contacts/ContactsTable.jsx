@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MenuVertical } from "neetoicons";
-import { Dropdown, Table } from "neetoui/v2";
+import { Dropdown, Table, Pagination } from "neetoui/v2";
 
 const ContactsTable = ({ contacts, setShowDeleteAlert }) => {
   const COLUMN_DATA = [
@@ -34,8 +34,11 @@ const ContactsTable = ({ contacts, setShowDeleteAlert }) => {
   ];
 
   return (
-    <div className="w-full notes-table-height">
+    <div className="w-full flex flex-col space-y-2 notes-table-height">
       <Table rowData={contacts} columnData={COLUMN_DATA} />
+      <div className="ml-auto">
+        <Pagination count={500} pageNo={3} pageSize={100} />
+      </div>
     </div>
   );
 };
