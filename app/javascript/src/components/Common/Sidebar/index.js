@@ -50,10 +50,6 @@ const Sidenav = () => {
       isCollapsed={isSidebarCollapsed}
       navLinks={SIDENAV_LINKS}
       appName={APP_NAME}
-      organizationInfo={{
-        name: "Wheel",
-        subdomain: "bigbinary.com",
-      }}
       profileInfo={{
         name: `${user.first_name} ${user.last_name}`,
         imageUrl: user.profile_image_path,
