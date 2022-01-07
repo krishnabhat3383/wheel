@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
-import { Search } from "neetoicons";
-import { Input, Button } from "neetoui/v2";
-import { Header, Container } from "neetoui/v2/layouts";
+import { Plus } from "neetoicons";
+import { Button } from "neetoui";
+import { Header, Container } from "neetoui/layouts";
 
-import { CONTACTS as contacts } from "./constants";
-import ContactsTable from "./ContactsTable";
-import DeleteAlert from "./DeleteAlert";
+import { CONTACTS } from "./constants";
+import NewContact from "./Create";
+import Delete from "./Delete";
+import ContactsList from "./List";
 import Menubar from "./Menubar";
-import NewContactPane from "./Pane/CreateContact";
 
 const Contacts = () => {
-  const [showContactPane, setShowContactPane] = useState(false);
-  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [isNewContactPaneOpen, setIsNewContactPaneOpen] = useState(false);
+  const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
 
   return (
     <div className="flex w-full overflow-auto">
@@ -21,32 +21,27 @@ const Contacts = () => {
         <Header
           menuBarToggle
           title="All Contacts"
+          searchProps={{
+            placeholder: "Search Name, Email, Phone Number, Ect.",
+          }}
           actionBlock={
-            <div className="flex space-x-2">
-              <Input
-                size="small"
-                className="w-64"
-                prefix={<Search />}
-                placeholder="Search Name, Email, Phone Number, Ect."
-              />
-              <Button
-                onClick={() => setShowContactPane(true)}
-                label="Add Contact"
-                icon="ri-add-line"
-              />
-            </div>
+            <Button
+              onClick={() => setIsNewContactPaneOpen(true)}
+              label="Add Contact"
+              icon={Plus}
+            />
           }
         />
-        <ContactsTable
-          contacts={contacts}
-          setShowDeleteAlert={setShowDeleteAlert}
+        <ContactsList
+          contacts={CONTACTS}
+          setIsDeleteAlertOpen={setIsDeleteAlertOpen}
         />
-        <NewContactPane
-          showPane={showContactPane}
-          setShowPane={setShowContactPane}
+        <NewContact
+          isNewContactPaneOpen={isNewContactPaneOpen}
+          setIsNewContactPaneOpen={setIsNewContactPaneOpen}
         />
-        {showDeleteAlert && (
-          <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
+        {isDeleteAlertOpen && (
+          <Delete onClose={() => setIsDeleteAlertOpen(false)} />
         )}
       </Container>
     </div>
