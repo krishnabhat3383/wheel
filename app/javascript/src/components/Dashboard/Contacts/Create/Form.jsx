@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import { Pane, Button, Toastr } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
-import { INITIAL_VALUES, VALIDATION_SCHEMA, ROLES } from "./constants";
+import { INITIAL_VALUES, VALIDATION_SCHEMA, ROLES } from "../constants";
 
 const ContactForm = ({ onClose }) => {
   const handleSubmit = async () => {

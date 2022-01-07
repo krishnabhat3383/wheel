@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
-import { TAGS, VALIDATION_SCHEMA, INITIAL_VALUES } from "./constants";
+import { TAGS, VALIDATION_SCHEMA, INITIAL_VALUES } from "../constants";
 
 export default function NoteForm({ onClose }) {
   const handleSubmit = async () => {
