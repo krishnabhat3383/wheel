@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { MenuVertical } from "neetoicons";
-import { Dropdown, Table, Pagination } from "neetoui/v2";
+import { Dropdown, Table } from "neetoui";
 
-const ContactsTable = ({ contacts, setShowDeleteAlert }) => {
+const ContactsList = ({ contacts, setIsDeleteAlertOpen }) => {
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+
   const COLUMN_DATA = [
     {
       title: "Name & role",
@@ -27,20 +29,21 @@ const ContactsTable = ({ contacts, setShowDeleteAlert }) => {
       render: () => (
         <Dropdown buttonStyle="text" icon={MenuVertical} options>
           <li>Edit</li>
-          <li onClick={() => setShowDeleteAlert(true)}>Delete</li>
+          <li onClick={() => setIsDeleteAlertOpen(true)}>Delete</li>
         </Dropdown>
       ),
     },
   ];
 
   return (
-    <div className="w-full flex flex-col space-y-2 notes-table-height">
-      <Table rowData={contacts} columnData={COLUMN_DATA} />
-      <div className="ml-auto">
-        <Pagination count={500} pageNo={3} pageSize={100} />
-      </div>
-    </div>
+    <Table
+      rowData={contacts}
+      columnData={COLUMN_DATA}
+      currentPageNumber={currentPageNumber}
+      defaultPageSize={10}
+      handlePageChange={page => setCurrentPageNumber(page)}
+    />
   );
 };
 
-export default ContactsTable;
+export default ContactsList;
