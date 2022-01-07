@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Modal, Button, Typography, Toastr } from "neetoui/v2";
+import { Modal, Button, Typography, Toastr } from "neetoui";
 
-const DeleteAlert = ({ onClose }) => {
+const Delete = ({ onClose }) => {
   const handleDelete = async () => {
     try {
       Toastr.success("Note deleted successfully");
@@ -31,4 +31,4 @@ const DeleteAlert = ({ onClose }) => {
   );
 };
 
-export default DeleteAlert;
+export default Delete;
