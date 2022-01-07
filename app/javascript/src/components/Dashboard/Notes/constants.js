@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export const NOTES = [
   {
     title: "How to claim the warranty?",
@@ -41,3 +43,17 @@ export const TAGS = [
   "Bugs",
   "V2",
 ];
+
+export const INITIAL_VALUES = {
+  title: "",
+  description: "",
+  assignedContact: "",
+  tags: "",
+};
+
+export const VALIDATION_SCHEMA = yup.object().shape({
+  title: yup.string().required("Title is required"),
+  description: yup.string().required("Description is required"),
+  assignedContact: yup.object().required("Contact must be assigned"),
+  tags: yup.object().required("Tag is required"),
+});

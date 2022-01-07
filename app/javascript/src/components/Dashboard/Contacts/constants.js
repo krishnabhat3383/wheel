@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Typography, Avatar } from "neetoui";
+import * as yup from "yup";
 
 export const CONTACTS = [
   {
@@ -284,3 +285,22 @@ export const CONTACTS = [
     ),
   },
 ];
+
+export const ROLES = ["Work", "Friend", "Family"];
+
+export const INITIAL_VALUES = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  role: "",
+};
+
+export const VALIDATION_SCHEMA = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  email: yup
+    .string()
+    .email("Email should be valid")
+    .required("Email address is required"),
+  role: yup.object().required("Role is required"),
+});
