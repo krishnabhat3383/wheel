@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
-import { Search } from "neetoicons";
-import { Button, Input } from "neetoui/v2";
-import { Container, Header } from "neetoui/v2/layouts";
+import { Plus } from "neetoicons";
+import { Button } from "neetoui";
+import { Container, Header } from "neetoui/layouts";
 
-import { NOTES as notes } from "./constants";
-import DeleteAlert from "./DeleteAlert";
+import { NOTES } from "./constants";
+import NewNote from "./Create";
+import Delete from "./Delete";
+import NotesList from "./List";
 import Menubar from "./Menubar";
-import NotesList from "./NotesList";
-import NewNotePane from "./Pane/CreateNote";
 
 const Notes = () => {
-  const [showNewNotePane, setShowNewNotePane] = useState(false);
-  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [isNewNotePaneOpen, setIsNewNotePaneOpen] = useState(false);
+  const [isNoteDeleteAlertOpen, setIsNoteDeleteAlertOpen] = useState(false);
 
   return (
     <div className="flex w-full">
@@ -21,29 +21,27 @@ const Notes = () => {
         <Header
           menuBarToggle
           title="All Notes"
+          searchProps={{
+            placeholder: "Search Name, Email, Phone Number, Ect.",
+          }}
           actionBlock={
-            <div className="flex space-x-2">
-              <Input
-                size="small"
-                className="w-64"
-                prefix={<Search />}
-                placeholder="Search Name, Email, Phone Number, Ect."
-              />
-              <Button
-                onClick={() => setShowNewNotePane(true)}
-                label="Add New Note"
-                icon="ri-add-line"
-              />
-            </div>
+            <Button
+              onClick={() => setIsNewNotePaneOpen(true)}
+              label="Add New Note"
+              icon={Plus}
+            />
           }
         />
-        <NotesList notes={notes} setShowDeleteAlert={setShowDeleteAlert} />
-        <NewNotePane
-          showPane={showNewNotePane}
-          setShowPane={setShowNewNotePane}
+        <NotesList
+          notes={NOTES}
+          setIsNoteDeleteAlertOpen={setIsNoteDeleteAlertOpen}
         />
-        {showDeleteAlert && (
-          <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
+        <NewNote
+          isNotePaneOpen={isNewNotePaneOpen}
+          setIsNotePaneOpen={setIsNewNotePaneOpen}
+        />
+        {isNoteDeleteAlertOpen && (
+          <Delete onClose={() => setIsNoteDeleteAlertOpen(false)} />
         )}
       </Container>
     </div>

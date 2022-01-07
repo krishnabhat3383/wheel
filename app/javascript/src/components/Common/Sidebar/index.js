@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { Toastr } from "neetoui/v2";
-import { Sidebar } from "neetoui/v2/layouts";
+import { Toastr } from "neetoui";
+import { Sidebar } from "neetoui/layouts";
 import { useHistory } from "react-router-dom";
 
 import authenticationApi from "apis/authentication";
