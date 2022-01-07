@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Button, Pane, Input, Select, Toastr } from "neetoui/v2";
+import { Button, Pane, Input, Select, Toastr } from "neetoui";
 
-import { TAGS as tags } from "./constants";
+import { TAGS } from "./constants";
 
 export default function NoteForm({ onClose }) {
   const handleSubmit = async () => {
@@ -40,7 +40,7 @@ export default function NoteForm({ onClose }) {
           className="w-full flex-grow-0"
           name="tag"
           placeholder="Select Role"
-          options={tags.map(tag => ({ label: tag, value: tag }))}
+          options={TAGS.map(tag => ({ label: tag, value: tag }))}
           required
         />
       </Pane.Body>
