@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Pane, Button, Toastr, Input, Select } from "neetoui/v2";
+import { Pane, Button, Toastr, Input, Select } from "neetoui";
 
 const ContactForm = ({ onClose }) => {
   const handleSubmit = async () => {
